@@ -1,0 +1,159 @@
+﻿<Window x:Class="Lab4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab4"
+        xmlns:controlls="clr-namespace:Lab4.controlls"
+       
+        Title="MainWindow" Height="550" Width="800" ResizeMode="CanMinimize">
+
+    <Grid Margin="0,0,0.333,-1">
+
+        <DataGrid SelectionMode="Single" Name="DataGrid" SelectedItem="{Binding SelectedFileInfo}"  IsReadOnly="True"  AlternatingRowBackground="Aquamarine" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" CanUserReorderColumns ="False" ItemsSource="{Binding Users}" HorizontalAlignment="Left" Height="300" Margin="10,58,0,0" VerticalAlignment="Top" Width="773">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Edit user" Command="{Binding EditUserCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}"/>
+                    <MenuItem Header="Remove user" Command="{Binding RemoveUserCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        <Button x:Name="button" Content="Add user" HorizontalAlignment="Left" Margin="60,34,0,0" VerticalAlignment="Top" Width="75" Command="{Binding AddUserCommand}" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-17.6"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <ComboBox SelectedIndex="{Binding SelectedSortIndex,Mode=TwoWay}" x:Name="comboBox" HorizontalAlignment="Left" Margin="555,34,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.5,0.5">
+            <ComboBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.379"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ComboBox.RenderTransform>
+            <ComboBoxItem>None</ComboBoxItem>
+            <ComboBoxItem>Name</ComboBoxItem>
+            <ComboBoxItem>Surname</ComboBoxItem>
+            <ComboBoxItem>Email</ComboBoxItem>
+            <ComboBoxItem>Birth date</ComboBoxItem>
+            <ComboBoxItem>Is adult</ComboBoxItem>
+            <ComboBoxItem>Sun sign</ComboBoxItem>
+            <ComboBoxItem>Chinese zodiac</ComboBoxItem>
+            <ComboBoxItem>Has birthday</ComboBoxItem>
+        </ComboBox>
+        <Label x:Name="label" Content="Sort by:" HorizontalAlignment="Left" Margin="504,33,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.777,-0.094"/>
+        <CheckBox x:Name="checkBox" Content="Descending?" IsChecked="{Binding AscendingSort,Mode=TwoWay}" HorizontalAlignment="Left" Margin="680,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.34,0.543" />
+        <CheckBox x:Name="checkBox1" Content="Filter?" IsChecked="{Binding Filter,Mode=TwoWay}" HorizontalAlignment="Left" Margin="30,364,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBox2" IsChecked="{Binding AdultCheck}" IsThreeState="True" Content="Is adult?" Visibility ="{Binding FilterVisibility}" HorizontalAlignment="Left" Margin="109,364,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBox3" IsChecked="{Binding BdayCheck}" IsThreeState="True" Content="Has birthday?" Visibility ="{Binding FilterVisibility}" HorizontalAlignment="Left" Margin="109,386,0,0" VerticalAlignment="Top"/>
+        <DatePicker SelectedDate="{Binding OlderThanDate}"  HorizontalAlignment="Left"  Visibility ="{Binding FilterVisibility}" Margin="228,381,0,0" VerticalAlignment="Top"/>
+        <DatePicker SelectedDate="{Binding YoungerThanDate}" HorizontalAlignment="Left"  Visibility ="{Binding FilterVisibility}" Margin="350,381,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+            <DatePicker.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="12.058"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DatePicker.RenderTransform>
+        </DatePicker>
+        <Label x:Name="label1" Visibility ="{Binding FilterVisibility}" Content="Older than:" HorizontalAlignment="Left" Margin="228,357,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.145,-0.295"/>
+        <Label x:Name="label2" Content="Younger than:"  Visibility ="{Binding FilterVisibility}" HorizontalAlignment="Left" Margin="350,357,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.571,0.667"/>
+        <ComboBox SelectedIndex="{Binding SelectedZodiac}" x:Name="comboBox1"  Visibility ="{Binding FilterVisibility}" HorizontalAlignment="Left" Margin="562,352,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.5,0.5">
+            <ComboBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-6.254"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ComboBox.RenderTransform>
+            <ComboBoxItem>None</ComboBoxItem>
+            <ComboBoxItem>Aries</ComboBoxItem>
+            <ComboBoxItem>Taurus</ComboBoxItem>
+            <ComboBoxItem>Gemini</ComboBoxItem>
+            <ComboBoxItem>Cancer</ComboBoxItem>
+            <ComboBoxItem>Leo</ComboBoxItem>
+            <ComboBoxItem>Virgo</ComboBoxItem>
+            <ComboBoxItem>Libra</ComboBoxItem>
+            <ComboBoxItem>Scorpio</ComboBoxItem>
+            <ComboBoxItem>Sagittarius</ComboBoxItem>
+            <ComboBoxItem>Capricorn</ComboBoxItem>
+            <ComboBoxItem>Aquarius</ComboBoxItem>
+            <ComboBoxItem>Pisces</ComboBoxItem>
+        </ComboBox>
+        <Label x:Name="label4" Content="Zodiac:"  Visibility ="{Binding FilterVisibility}" HorizontalAlignment="Left" Margin="508,361,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label5" Content="Chinese zodiac:"  Visibility ="{Binding FilterVisibility}" HorizontalAlignment="Left" Margin="465,381,0,0" VerticalAlignment="Top"/>
+        <ComboBox SelectedIndex="{Binding SelectedChinese}" x:Name="comboBox2" Visibility ="{Binding FilterVisibility}"  HorizontalAlignment="Left" Margin="562,380,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.5,0.5">
+            <ComboBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="5.813"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ComboBox.RenderTransform>
+            <ComboBoxItem>None</ComboBoxItem>
+            <ComboBoxItem>Rat</ComboBoxItem>
+            <ComboBoxItem>Ox</ComboBoxItem>
+            <ComboBoxItem>Tiger</ComboBoxItem>
+            <ComboBoxItem>Rabbit</ComboBoxItem>
+            <ComboBoxItem>Dragon</ComboBoxItem>
+            <ComboBoxItem>Snake</ComboBoxItem>
+            <ComboBoxItem>Horse</ComboBoxItem>
+            <ComboBoxItem>Goat</ComboBoxItem>
+            <ComboBoxItem>Monkey</ComboBoxItem>
+            <ComboBoxItem>Rooster</ComboBoxItem>
+            <ComboBoxItem>Dog</ComboBoxItem>
+            <ComboBoxItem>Pig</ComboBoxItem>
+        </ComboBox>
+        <CheckBox IsChecked="{Binding NotZodiac}" Visibility="{Binding ZodiacNot}" x:Name="checkBox4" Content="NOT" HorizontalAlignment="Left" Margin="686,364,0,0" VerticalAlignment="Top"/>
+        <CheckBox IsChecked="{Binding NotChinese}" Visibility="{Binding ChineseNot}" x:Name="checkBox5" Content="NOT" HorizontalAlignment="Left" Margin="686,388,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label6" Content="Name:"  Visibility ="{Binding FilterVisibility}" HorizontalAlignment="Left" Margin="37,410,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.152,0.506"/>
+        <TextBox x:Name="textBox" Text="{Binding NameStarts,UpdateSourceTrigger=PropertyChanged}" Visibility ="{Binding FilterVisibility}" HorizontalAlignment="Left" Height="23" Margin="184,408,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="7.563"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <Label x:Name="label7" Content="Surname:"  Visibility ="{Binding FilterVisibility}" HorizontalAlignment="Left" Margin="37,441,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox1" Text="{Binding SurnameStarts,UpdateSourceTrigger=PropertyChanged}" Visibility ="{Binding FilterVisibility}" HorizontalAlignment="Left" Height="23" Margin="183,441,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label8" Visibility="{Binding HintVisibility}" Content="To edit or delete a user, right-click on the user's cell." HorizontalAlignment="Left" Margin="109,3,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label9" Visibility="{Binding HintVisibility}" Content="Data is automatically saved after each operation(Add, edit, delete)." HorizontalAlignment="Left" Margin="407,5,0,0" VerticalAlignment="Top"/>
+        <CheckBox IsChecked="{Binding HintCheck,Mode=TwoWay}" x:Name="checkBox8" Content="Hint:" HorizontalAlignment="Left" Margin="30,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+            <CheckBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="20.799"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <Label x:Name="label3"  Visibility ="{Binding FilterVisibility}" Content="Email" HorizontalAlignment="Left" Margin="43,472,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.035,0.41"/>
+        <TextBox x:Name="textBox2" Visibility ="{Binding FilterVisibility}" HorizontalAlignment="Left" Height="23" Margin="183,472,0,0" TextWrapping="Wrap" Text="{Binding EmailStarts,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.786,0.464"/>
+        <Label x:Name="label10"  Visibility ="{Binding FilterVisibility}" Content="Starts with:" HorizontalAlignment="Left" Margin="105,410,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label11"  Visibility ="{Binding FilterVisibility}" Content="Ends with:" HorizontalAlignment="Left" Margin="327,410,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox3" Visibility ="{Binding FilterVisibility}"  HorizontalAlignment="Left" Height="23" Margin="407,414,0,0" TextWrapping="Wrap" Text="{Binding NameEnds,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox4"  Visibility ="{Binding FilterVisibility}" HorizontalAlignment="Left" Height="23" Margin="407,442,0,0" TextWrapping="Wrap" Text="{Binding SurnameEnds,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox5"  Visibility ="{Binding FilterVisibility}" HorizontalAlignment="Left" Height="23" Margin="407,470,0,0" TextWrapping="Wrap" Text="{Binding EmailEnds,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label12"  Visibility ="{Binding FilterVisibility}" Content="Contains:" HorizontalAlignment="Left" Margin="552,410,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.298,0.372"/>
+        <TextBox x:Name="textBox6" Visibility ="{Binding FilterVisibility}"  HorizontalAlignment="Left" Height="23" Margin="629,413,0,0" TextWrapping="Wrap" Text="{Binding NameContains,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox7"  Visibility ="{Binding FilterVisibility}" HorizontalAlignment="Left" Height="23" Margin="629,442,0,0" TextWrapping="Wrap" Text="{Binding SurnameContains,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox8" Text="{Binding EmailContains,UpdateSourceTrigger=PropertyChanged}" Visibility ="{Binding FilterVisibility}" HorizontalAlignment="Left" Height="23" Margin="629,472,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        
+
+    </Grid>
+
+
+</Window>
