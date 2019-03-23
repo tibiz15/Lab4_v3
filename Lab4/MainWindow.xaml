@@ -63,8 +63,8 @@
                 </TransformGroup>
             </DatePicker.RenderTransform>
         </DatePicker>
-        <Label x:Name="label1" Visibility ="{Binding FilterVisibility}" Content="Older than:" HorizontalAlignment="Left" Margin="228,357,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.145,-0.295"/>
-        <Label x:Name="label2" Content="Younger than:"  Visibility ="{Binding FilterVisibility}" HorizontalAlignment="Left" Margin="350,357,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.571,0.667"/>
+        <Label x:Name="label1" Visibility ="{Binding FilterVisibility}" Content="Younger than:" HorizontalAlignment="Left" Margin="228,357,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.145,-0.295"/>
+        <Label x:Name="label2" Content="Older than:"  Visibility ="{Binding FilterVisibility}" HorizontalAlignment="Left" Margin="350,357,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.571,0.667"/>
         <ComboBox SelectedIndex="{Binding SelectedZodiac}" x:Name="comboBox1"  Visibility ="{Binding FilterVisibility}" HorizontalAlignment="Left" Margin="562,352,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.5,0.5">
             <ComboBox.RenderTransform>
                 <TransformGroup>
